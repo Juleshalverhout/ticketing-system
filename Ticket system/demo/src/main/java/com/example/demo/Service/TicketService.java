@@ -26,4 +26,18 @@ public class TicketService {
     public Ticket getTicketById(Long id) {
         return ticketRepository.findById(id).orElse(null);
     }
+
+    public Ticket updateTicket(Long id, Ticket updatedTicketData) {
+        Ticket existingTicket = ticketRepository.findById(id).orElse(null);
+
+        if (existingTicket != null) {
+            existingTicket.setTitle(updatedTicketData.getTitle());
+            existingTicket.setDescription(updatedTicketData.getDescription());
+            existingTicket.setStatus(updatedTicketData.getStatus());
+
+            return ticketRepository.save(existingTicket);
+        }
+
+        return null;
+    }
 }
