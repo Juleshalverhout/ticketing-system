@@ -1,7 +1,9 @@
 package com.example.demo.Service;
 
 import com.example.demo.Entity.Ticket;
+import com.example.demo.Entity.User;
 import com.example.demo.Repository.TicketRepository;
+import com.example.demo.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +13,11 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
 
-    public TicketService(TicketRepository ticketRepository) {
+    private final UserRepository userRepository;
+
+    public TicketService(TicketRepository ticketRepository, UserRepository userRepository) {
         this.ticketRepository = ticketRepository;
+        this.userRepository = userRepository;
     }
 
     public Ticket createTicket(Ticket ticket) {
@@ -39,5 +44,18 @@ public class TicketService {
         }
 
         return null;
+    }
+
+    public Ticket assignTicketToUser(Long ticketId, Long userId) {
+
+        Ticket ticket = ticketRepository.findById(ticketId).orElse(null);
+        User user = userRepository.findById(userId).orElse(null);
+
+        if (ticket != null && user != null) {
+            ticket.setAssignee(user);
+            return ticketRepository.save(ticket);
+        }
+        return null;
+
     }
 }

@@ -1,9 +1,6 @@
 package com.example.demo.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Ticket {
@@ -15,6 +12,10 @@ public class Ticket {
     private String title;
     private String description;
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "assignee_id")
+    private User assignee;
 
     public Ticket() {
 
@@ -56,5 +57,13 @@ public class Ticket {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
     }
 }

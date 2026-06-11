@@ -36,4 +36,9 @@ public class TicketController {
         return ticketService.updateTicket(id, ticket);
     }
 
+    @PutMapping("/{ticketId}/assign{userId}")
+    public Ticket assignTicketToUser(@PathVariable Long ticketId, @PathVariable Long userId) {
+        return ticketService.assignTicketToUser(ticketId, userId);
+    }
+
 }
