@@ -1,6 +1,8 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Ticket {
@@ -9,8 +11,14 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+
+    @NotBlank(message = "Please create a title, field cannot be empty")
+    @Size(max = 50, message = "Maximum allowed length: 50 characters")
     private String title;
+
+    @NotBlank(message = "Please provide a description, field cannot be empty")
     private String description;
+
     private String status;
 
     @ManyToOne
