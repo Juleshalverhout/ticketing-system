@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.Entity.Ticket;
 import com.example.demo.Entity.User;
+import com.example.demo.Enums.TicketStatus;
 import com.example.demo.Repository.TicketRepository;
 import com.example.demo.Repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -57,5 +58,9 @@ public class TicketService {
         }
         return null;
 
+    }
+
+    public List<Ticket> getTicketByStatus(TicketStatus status) {
+        return ticketRepository.findByStatus(status);
     }
 }

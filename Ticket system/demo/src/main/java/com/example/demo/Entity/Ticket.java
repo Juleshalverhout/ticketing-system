@@ -1,5 +1,6 @@
 package com.example.demo.Entity;
 
+import com.example.demo.Enums.TicketStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -19,7 +20,8 @@ public class Ticket {
     @NotBlank(message = "Please provide a description, field cannot be empty")
     private String description;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
 
     @ManyToOne
     @JoinColumn(name = "assignee_id")
@@ -29,7 +31,7 @@ public class Ticket {
 
     }
 
-    public Ticket(String title, String description, String status) {
+    public Ticket(String title, String description, TicketStatus status) {
         this.title = title;
         this.description = description;
         this.status = status;
@@ -47,7 +49,7 @@ public class Ticket {
         return description;
     }
 
-    public String getStatus() {
+    public TicketStatus getStatus() {
         return status;
     }
 
@@ -63,7 +65,7 @@ public class Ticket {
         this.description = description;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TicketStatus status) {
         this.status = status;
     }
 

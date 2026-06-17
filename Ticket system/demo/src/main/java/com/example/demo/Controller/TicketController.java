@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Entity.Ticket;
+import com.example.demo.Enums.TicketStatus;
 import com.example.demo.Service.TicketService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,11 @@ public class TicketController {
     @PutMapping("/{ticketId}/assign{userId}")
     public Ticket assignTicketToUser(@PathVariable Long ticketId, @PathVariable Long userId) {
         return ticketService.assignTicketToUser(ticketId, userId);
+    }
+
+    @GetMapping("/search")
+    public List<Ticket> getTicketByStatus(@RequestParam TicketStatus status) {
+        return ticketService.getTicketByStatus(status);
     }
 
 }
