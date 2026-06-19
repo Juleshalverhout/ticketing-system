@@ -1,6 +1,6 @@
-package com.example.demo.Entity;
+package com.example.demo.entity;
 
-import com.example.demo.Enums.TicketStatus;
+import com.example.demo.enums.TicketStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

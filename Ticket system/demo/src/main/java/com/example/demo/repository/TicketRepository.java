@@ -1,7 +1,7 @@
-package com.example.demo.Repository;
+package com.example.demo.repository;
 
-import com.example.demo.Entity.Ticket;
-import com.example.demo.Enums.TicketStatus;
+import com.example.demo.entity.Ticket;
+import com.example.demo.enums.TicketStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

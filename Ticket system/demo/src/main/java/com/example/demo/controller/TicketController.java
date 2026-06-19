@@ -1,8 +1,8 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
-import com.example.demo.Entity.Ticket;
-import com.example.demo.Enums.TicketStatus;
-import com.example.demo.Service.TicketService;
+import com.example.demo.entity.Ticket;
+import com.example.demo.enums.TicketStatus;
+import com.example.demo.service.TicketService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
