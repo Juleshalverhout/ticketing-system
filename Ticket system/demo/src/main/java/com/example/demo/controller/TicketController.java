@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TicketResponseDTO;
 import com.example.demo.entity.Ticket;
 import com.example.demo.enums.TicketStatus;
 import com.example.demo.service.TicketService;
@@ -29,7 +30,7 @@ public class TicketController {
     }
 
     @GetMapping("/{Id}")
-    public Ticket getTicketById(@PathVariable Long Id) {
+    public TicketResponseDTO getTicketById(@PathVariable Long Id) {
         return ticketService.getTicketById(Id);
     }
 
