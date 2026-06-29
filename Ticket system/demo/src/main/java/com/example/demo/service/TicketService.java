@@ -9,6 +9,8 @@ import com.example.demo.repository.TicketRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -27,8 +29,16 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-    public List<Ticket> getAllTickets() {
-        return ticketRepository.findAll();
+
+    public List<TicketResponseDTO> getAllTickets() {
+
+        List<Ticket> rawTickets = ticketRepository.findAll();
+        List<TicketResponseDTO> dtoList = new java.util.ArrayList<>();
+
+        for (Ticket ticket : rawTickets) {
+            dtoList.add(convertToDTO(ticket));
+        }
+        return dtoList;
     }
 
     public TicketResponseDTO getTicketById(Long id) {
