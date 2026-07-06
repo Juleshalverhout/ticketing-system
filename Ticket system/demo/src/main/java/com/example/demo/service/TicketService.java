@@ -69,8 +69,15 @@ public class TicketService {
     }
 
 
-    public List<Ticket> getTicketByStatus(TicketStatus status) {
-        return ticketRepository.findByStatus(status);
+    public List<TicketResponseDTO> getTicketByStatus(TicketStatus status) {
+
+        List<Ticket> rawTickets = ticketRepository.findByStatus(status);
+        List<TicketResponseDTO> dtoList= new ArrayList<>();
+
+        for (Ticket ticket : rawTickets) {
+            dtoList.add(convertToDTO(ticket));
+        }
+        return dtoList;
     }
 
     private TicketResponseDTO convertToDTO(Ticket ticket) {

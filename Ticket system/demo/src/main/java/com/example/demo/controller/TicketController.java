@@ -45,8 +45,7 @@ public class TicketController {
     }
 
     @GetMapping("/search")
-    public List<Ticket> getTicketByStatus(@RequestParam TicketStatus status) {
+    public List<TicketResponseDTO> getTicketByStatus(@RequestParam TicketStatus status) {
         return ticketService.getTicketByStatus(status);
     }
-
 }
