@@ -24,8 +24,10 @@ public class User {
     @NotBlank(message = "Role cannot be empty")
     private String role;
 
-    public User(Long id, String username, String email, String role) {
-        this.id = id;
+    public User() {
+    }
+
+    public User(String username, String email, String role) {
         this.username = username;
         this.email = email;
         this.role = role;

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TicketRequestDTO;
 import com.example.demo.dto.TicketResponseDTO;
 import com.example.demo.entity.Ticket;
 import com.example.demo.enums.TicketStatus;
@@ -20,8 +21,8 @@ public class TicketController {
     }
 
     @PostMapping
-    public Ticket createTicket(@Valid @RequestBody Ticket ticket) {
-        return ticketService.createTicket(ticket);
+    public TicketResponseDTO createTicket(@Valid @RequestBody TicketRequestDTO requestDTO) {
+        return ticketService.createTicket(requestDTO);
     }
 
     @GetMapping

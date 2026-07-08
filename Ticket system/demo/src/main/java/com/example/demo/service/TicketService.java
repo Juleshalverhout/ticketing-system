@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.TicketRequestDTO;
 import com.example.demo.dto.TicketResponseDTO;
 import com.example.demo.entity.Ticket;
 import com.example.demo.entity.User;
@@ -25,8 +26,21 @@ public class TicketService {
         this.userRepository = userRepository;
     }
 
-    public Ticket createTicket(Ticket ticket) {
-        return ticketRepository.save(ticket);
+    public TicketResponseDTO createTicket(TicketRequestDTO requestDTO) {
+        Ticket newTicket = new Ticket();
+
+        newTicket.setTitle(requestDTO.title());
+        newTicket.setDescription(requestDTO.description());
+        newTicket.setStatus(TicketStatus.OPEN);
+
+        if (requestDTO.assigneeId() != null) {
+            User assignee = userRepository.findById(requestDTO.assigneeId())
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + requestDTO.assigneeId()));
+            newTicket.setAssignee(assignee);
+        }
+
+        Ticket savedTicket = ticketRepository.save(newTicket);
+        return convertToDTO(savedTicket);
     }
 
 
@@ -72,7 +86,7 @@ public class TicketService {
     public List<TicketResponseDTO> getTicketByStatus(TicketStatus status) {
 
         List<Ticket> rawTickets = ticketRepository.findByStatus(status);
-        List<TicketResponseDTO> dtoList= new ArrayList<>();
+        List<TicketResponseDTO> dtoList = new ArrayList<>();
 
         for (Ticket ticket : rawTickets) {
             dtoList.add(convertToDTO(ticket));
