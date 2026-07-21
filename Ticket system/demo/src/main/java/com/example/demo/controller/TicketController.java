@@ -49,4 +49,9 @@ public class TicketController {
     public List<TicketResponseDTO> getTicketByStatus(@RequestParam TicketStatus status) {
         return ticketService.getTicketByStatus(status);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteTicket(@PathVariable Long id) {
+        ticketService.deleteTicket(id);
+    }
 }

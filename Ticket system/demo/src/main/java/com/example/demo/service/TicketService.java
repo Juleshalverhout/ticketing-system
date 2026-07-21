@@ -111,5 +111,12 @@ public class TicketService {
                 assigneeName
         );
     }
+
+    public void deleteTicket(Long id) {
+        if (!ticketRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Ticket not found with id: " + id);
+        }
+        ticketRepository.deleteById(id);
+    }
 }
 
